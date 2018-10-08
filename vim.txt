@@ -1,0 +1,12 @@
+切换shell
+1. ctrl + z  ->  ctrl + z
+2. :sh -> ctrl + d
+
+
+
+
+
+
+idea vim:
+move:
+1. alt + shift + up/down:  move current line

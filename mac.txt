@@ -1,0 +1,1 @@
+Option+Command+C  复制当前路径

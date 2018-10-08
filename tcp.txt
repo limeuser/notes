@@ -1,0 +1,22 @@
+backlog：这个值控制全连接队列的大小
+
+每秒新建链接的个数，连接建立的qps
+executionHandler
+
+为什么关闭连接需要四次报文交互，建立连接只需要三次，因为关闭需要支持单向半连接，建立只需要双向全连接，这是应用程决定的。
+
+三次握手协商信息：
+MSS 最大一个包中能传输的信息（不含tcp、ip包头）MSS+包头就是MTU（最大传输单元）
+SACK_PERM 用于丢包的话提升重传效率，提示当前缺失的报文后面的某些报文已经受到了。
+
+ss是Socket Statistics的缩写 查看socket状态，比netstat快很多
+
+
+dmesg用来显示内核环缓冲区（kernel-ring buffer）内容，内核将各种消息存放在这里。在系统引导时，内核将与硬件和模块初始化相关的信息填到这个缓冲区中。
+
+perf
+top
+
+tcp
+
+ss -tan state time-wait | wc -l

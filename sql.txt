@@ -1,0 +1,20 @@
+Sql执行顺序：
+1. From，join查找所有表数据，执行join，join操作不是语句，而是一个普通的关系代数表达式
+2. where，过滤row
+3. Group by，聚合到bucket中，列只能在聚合函数中使用
+4. 计算聚合函数，无论聚合函数在select中还是在order by等语句中
+5. having，聚合值过滤
+6. 窗口函数
+7. select
+8. distinct
+9. Unin等集合操作
+10. Order by，没有select的字段和表达式也可以使用，但是如果使用了distinct，没有select的字段不能使用了。
+11. offset
+12. limit，fetch，top
+
+
+时间：
+      1. 时间比较：where some_date >= Date'2018-01-01' and some_date < Date'2019-01-01'
+      2. 提取时间字段：extract(field from some_date)
+      3. cast(some_date as [date|time]提取日期和时间.
+      4. 

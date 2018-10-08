@@ -1,0 +1,15 @@
+强制更新覆盖本地修改：
+git reset --hard HEAD
+git pull
+
+拉去远程分支
+git clone xxxx.git //拉去master
+Git branch -r //查看远程分支
+Git checkout origin/daily/x.x.x
+
+git clone -b my-branch git@github.com:user/myproject.git
+
+Git tag 
+Git tag -a tagname
+
+

@@ -1,0 +1,12 @@
+文本编辑：
+1. Cmd + w 选中单词
+
+2. Alt + cmd + v抽取变量
+
+Cmd + /
+
+Cmd + p 显示方法签名
+
+⇧⌘⌫ (Navigate | Last Edit Location
+
+Cmd + e

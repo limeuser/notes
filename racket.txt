@@ -1,0 +1,15 @@
+module是基本的编译单元：
+a.rkt: #lang racket = (module a racket ...)  racket是模块的初始导入模块，改模块决定了语言的reader，即语法解析，即决定了语言的语法
+racket是描述模块路径的一种形式：使用symbol描述模块路径，另外require也适用了模块路径描述
+
+模块路径描述：
+1. quote（require 'racket) = (require (quote racket))描述一个没有文件的模块
+2. string（require "racket.rkt") = (require "racket") = (require "./racket.rtk")使用相对路径
+3. symbol (require racket/date)用来导入collection中的module,  racket/date.rkt
+   (require racket) = (require racket/main) = (require racket) racket是collection名字
+4. (lib string) (lib "racket/date.rkt") = (lib racket/date) = racket/date
+   (lib "racket") = (lib "racket/main.rkt") = (lib "racket/main") = racket
+
+package和collection是组织module的
+package是代码分发的单位，把一些module打包到一起，可以使用pkg安装packages are units of code distribution
+collection是逻辑上给module分类的单位collections are units of code classification.
