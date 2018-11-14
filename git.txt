@@ -12,4 +12,8 @@ git clone -b my-branch git@github.com:user/myproject.git
 Git tag 
 Git tag -a tagname
 
+删除ignored文件
+git rm -r --cached .
+git add .
+git commit -m
 
