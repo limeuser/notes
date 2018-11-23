@@ -17,3 +17,6 @@ git rm -r --cached .
 git add .
 git commit -m
 
+删除本地commit
+git reset --hard HEAD~1
+git push origin HEAD --force
