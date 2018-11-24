@@ -1,0 +1,2 @@
+更新文件
+jar uvf myjar.jar com/blackwing/ClassToAdd.class
