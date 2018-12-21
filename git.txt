@@ -20,3 +20,6 @@ git commit -m
 删除本地commit
 git reset --hard HEAD~1
 git push origin HEAD --force
+
+删除远程分支：
+git push origin --delete xx
