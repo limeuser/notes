@@ -1,3 +1,7 @@
 ssh登录到机器后执行默认命令：使用 bash --login保持登录状态，否则执行后ssh会断开
 ssh -i rt14.pem root@47.100.254.88 -t "cd /home/admin ; bash --login"
 
+
+https://github.com/tldr-pages/tldr
+set undofile
+  set undodir=~/.vim/undodir
