@@ -5,3 +5,7 @@ ssh -i rt14.pem root@47.100.254.88 -t "cd /home/admin ; bash --login"
 https://github.com/tldr-pages/tldr
 set undofile
   set undodir=~/.vim/undodir
+
+pod=`kubectl get pods -n $1 | grep $2 | awk '{print $1}'`
+echo "kubectl exec -it $pod bash -n $1"
+kubectl exec -it $pod bash -n $1
