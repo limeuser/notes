@@ -1,5 +1,5 @@
 ssh登录到机器后执行默认命令：使用 bash --login保持登录状态，否则执行后ssh会断开
-ssh -i rt14.pem root@47.100.254.88 -t "cd /home/admin ; bash --login"
+ssh -i xx.pem root@1.1.1.1 -t "cd /home/admin ; bash --login"
 
 
 https://github.com/tldr-pages/tldr
@@ -9,3 +9,6 @@ set undofile
 pod=`kubectl get pods -n $1 | grep $2 | awk '{print $1}'`
 echo "kubectl exec -it $pod bash -n $1"
 kubectl exec -it $pod bash -n $1
+
+cd - 上次目录
+
