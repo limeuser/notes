@@ -11,4 +11,5 @@ echo "kubectl exec -it $pod bash -n $1"
 kubectl exec -it $pod bash -n $1
 
 cd - 上次目录
+Ctrl+r 搜索命令历史
 
