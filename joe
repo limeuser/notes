@@ -1,0 +1,15 @@
+I was sad to hear that Joe Armstrong passed away this week. He was a kind, generous, witty, brilliant fellow. He was also a hero and a mentor to me personally. I had the privilege to be hired by Joe at to work with him at Bluetail and I'd like to share a few recollections of him as a colleague and office mate.
+
+Joe loved to talk. His thought process involved lots of animated discussion. He spent a lot of his work day bouncing up and down in his chair, waving his arms, and sketching on whiteboards. Each time he came upon an interesting idea he would shout loudly ("Ooooohhhhhhh!") until somebody would come and hear about it. He was fantastically accessible and he livened up the whole office.
+
+Joe wrote amazingly simple programs and he did so in a peculiar way. First he wrote down the program any old way just to get it out of his head. Then once it worked he would then immediately create a new directory program2 and write it again. He would repeat this process five or six times (program5, program6, ...) and each time he would understand the problem a little better and sense which parts of the program were essential enough to re-type. He thought this was the most natural thing in the world: of course you throw away the first few implementations, you didn't understand the problem when you wrote those!
+
+Joe's home directory was a treasure trove of new and old ideas. He had his latest experiments and also "classics" like decades old verisons of Erlang that were still hosted on Prolog. This was all openly shared over NFS and exciting to explore. (I hope that Joe's home directory ends up somewhere like the Computer History Museum.)
+
+Joe could see the essense of problems. His off-the-cuff solutions often sounded hopelessly naieve and oversimplified. Come on Joe, that's too silly, there's much more to it than that. Often after a few weeks of hard work I would come up with an elegant solution of my own -- and on the way to tell him about it I would recognize it as exactly the same idea he gave me in the beginning.
+
+Joe talked about Richard O'Keefe and Niklaus Wirth as the best programmers in the world. He would often quote engineering trade-offs from Project Oberon: yes, overlapping windows are better than tiled, but not better enough to justify the implementation complexity.
+
+Joe would get wildly excited by one "big idea" for weeks at a time. This could be a new idea of his own or a "well known" idea of somebody else's: the Rsync algorithm; public key cryptography; diff algorithms; parsing algorithms; etc. He would take an idea off the shelf, think (and talk!) about it very intensely for a while, and then put it back for a while and dive into the next topic that felt ripe.
+
+I am happy that Joe lived to see his life's work so well appreciated. I think that is a rare privilege even amongst very brilliant people. I always smiled when I saw him keynoting conferences and sharing his ideas with a receptive audience. Great work, Joe. Rest in peace.
