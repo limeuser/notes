@@ -10,3 +10,62 @@ Cmd + p 显示方法签名
 ⇧⌘⌫ (Navigate | Last Edit Location
 
 Cmd + e
+
+Applied: bailu.zjj@alibaba-inc.com.      zhangJ12#45
+Shell
+
+Mac:
+find . -name *.java -exec grep 'loadDimeTable' {} +
+Linux:
+find . -name *.java -exec grep 'loadDimeTable' {} \;
+Grep  -r递归搜索 -e正则   可以wildcard匹配文件
+find . -name "*.java" -exec sed -i '' s/foo/bar/g {} +
+
+grep -E 正则
+grep -e 
+grep仅支持wildcard
+
+sudo lsof -i:port
+vi
+
+:s/vivian/sky/ 替换当前行第一个 vivian 为 sky
+:s/vivian/sky/g 替换当前行所有 vivian 为 sky
+:n,$s/vivian/sky/ 替换第 n 行开始到最后一行中每一行的第一个 vivian 为 sky
+:n,$s/vivian/sky/g 替换第 n 行开始到最后一行中每一行所有 vivian 为 sky
+（n 为数字，若 n 为 .，表示从当前行开始到最后一行）
+:%s/vivian/sky/（等同于 :g/vivian/s//sky/） 替换每一行的第一个 vivian 为 sky
+:%s/vivian/sky/g（等同于 :g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky
+
+%跳转到匹配的括号
+
+fx  跳转到下一个x  
+Fx 跳转
+
+$ git gc --prune=now
+$ git remote prune origin
+git rm -r --cached .
+git add .
+git commit -m
+
+
+
+git reset --hard HEAD~1
+git push origin HEAD --force
+
+git remote show origin
+
+删除远程分枝
+Git push —delete origin xxx
+
+Idea
+Alt+Cmd+Shift+Left/Right   交换参数位置
+Shift + %：跳转到匹配的括号
+
+m char (MARK) 把这个地方标示成 char
+' char (quote character) 跳到被标为 char的那一行
+'' (按两次') 回到刚才的位置
+
+1. Alt + Enter : show intention actions (like Eclipse quick fix)
+2. Ctrl + Alt + V : introduce variable (never type the left hand side of an assignment again)
+3. Ctrl + Shift + Space : smart completion ( even two levels down since IntelliJ 8 )
+4. Ctrl + W : select succesively increasing code blocks. Kind of obvious but a real time saver!
