@@ -11,6 +11,10 @@ idea vim:
 move:
 1. alt + shift + up/down:  move current line
 
+
+git config --global core.autocrlf input
+vim 插件下载
+
 set nocompatible
 syntax on
 set showmode
