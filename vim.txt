@@ -10,3 +10,32 @@
 idea vim:
 move:
 1. alt + shift + up/down:  move current line
+
+set nocompatible
+syntax on
+set showmode
+set showcmd
+set mouse=r
+set encoding=utf-8
+set t_Co=256
+filetype indent on
+set autoindent
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+set ruler
+set showmatch
+set incsearch
+set ignorecase
+set smartcase
+set nobackup
+set undofile
+set history=1000
+set autoread 
+set shell=/bin/bash\ -i 
+for i in range(97,122)
+      let c = nr2char(i)
+      exec "map \e".c." <M-".c.">"
+      exec "map! \e".c." <M-".c.">"
+endfor 
+:nnoremap <m-d> :!vif<CR>
