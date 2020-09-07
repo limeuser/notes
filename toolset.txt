@@ -1,3 +1,7 @@
 https://thamaraiselvam.dev/terminal-enhancers-part-1-cke82u68f02iryjs1hfry9xcu?guid=none&deviceId=ec8b431f-9e40-41fa-94ca-79f190bd0b8b
 
 离线安装ohmyzsh：https://gist.github.com/hewerthomn/65bb351bf950470f6c9e6aba8c0c04f1
+
+ XKBOPTIONS="caps:swapescape"
+tmux source-file ~/.tmux.conf
+https://linuxize.com/post/getting-started-with-tmux/
