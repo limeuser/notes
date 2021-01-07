@@ -1,0 +1,4 @@
+dpkg -i a.deb
+/usr/bin/setxkbmap -option "caps:swapescape"
+解决lib依赖冲突，无法安装软件的问题：直接指定版本安装
+apt-get install lib=version

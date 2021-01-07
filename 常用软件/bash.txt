@@ -1,3 +1,29 @@
+cd - 上次目录
+Ctrl+r 搜索命令历史
+
+sudo lsof -i:port
+
+grep -E 正则
+grep -e 
+grep仅支持wildcard
+
+ssh id_rsa
+chmod 400 ~/.ssh/id_rsa
+
+
+// 失败时退出
+set -Eeuo pipefail 
+// 移动到脚本所在目录
+cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1
+
+
+Mac:
+find . -name *.java -exec grep 'loadDimeTable' {} +
+Linux:
+find . -name *.java -exec grep 'loadDimeTable' {} \;
+Grep  -r递归搜索 -e正则   可以wildcard匹配文件
+find . -name "*.java" -exec sed -i '' s/foo/bar/g {} +
+
 ssh登录到机器后执行默认命令：使用 bash --login保持登录状态，否则执行后ssh会断开
 ssh -i xx.pem root@1.1.1.1 -t "cd /home/admin ; bash --login"
 
@@ -10,8 +36,7 @@ pod=`kubectl get pods -n $1 | grep $2 | awk '{print $1}'`
 echo "kubectl exec -it $pod bash -n $1"
 kubectl exec -it $pod bash -n $1
 
-cd - 上次目录
-Ctrl+r 搜索命令历史
+
 
 ssh登录免密：
 sshpass -p 'password' ssh user@server

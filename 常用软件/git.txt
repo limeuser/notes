@@ -1,3 +1,5 @@
+hub.fastgit.org
+
 强制更新覆盖本地修改：
 git reset --hard HEAD
 git pull
@@ -23,3 +25,11 @@ git push origin HEAD --force
 
 删除远程分支：
 git push origin --delete xx
+
+git gc --prune=now
+git remote prune origin
+git rm -r --cached .
+git add .
+git commit -m
+
+git remote show origin

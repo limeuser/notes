@@ -1,4 +1,33 @@
+idea：
 Alt + Enter : show intention actions (like Eclipse quick fix)
-   Ctrl + Alt + V : introduce variable (never type the left hand side of an assignment again)
-   Ctrl + Shift + Space : smart completion ( even two levels down since IntelliJ 8 )
-   Ctrl + W : select succesively increasing code blocks. Kind of obvious but a real time saver!
+Ctrl + Alt + V : introduce variable (never type the left hand side of an assignment again)
+Ctrl + Shift + Space : smart completion ( even two levels down since IntelliJ 8 )
+Ctrl + W : select succesively increasing code blocks. Kind of obvious but a real time saver!
+Alt+Cmd+Shift+Left/Right   交换参数位置
+Shift + %：跳转到匹配的括号
+m char (MARK) 把这个地方标示成 char
+' char (quote character) 跳到被标为 char的那一行
+'' (按两次') 回到刚才的位置
+alt + shift + up/down:  move current line
+
+mac：
+Option+Command+C  复制当前路径
+
+
+windows
+alt + space
+win + a 打开chrome
+ctrl + shift + s 点击鼠标左键
+win+Q  搜索
+win + shift +s 截图
+
+
+vmware
+ctrl + alt 跳出虚拟机
+
+
+微信：
+alt+a截图
+
+
+

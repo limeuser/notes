@@ -27,6 +27,24 @@ for i in range(97,122)
 endfor 
 :nnoremap <m-d> :!vif<CR>
 
+
+set hlsearch    " highlight all search results
+set ignorecase  " do case insensitive search 
+set incsearch   " show incremental search results as you type
+set number      " display line number
+set noswapfile  " disable swap file
+粘贴时不自动缩进
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
 set nocompatible
 filetype off
 

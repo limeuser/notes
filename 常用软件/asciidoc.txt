@@ -1,0 +1,3 @@
+
+asciidoc转markdown
+pandoc -f docbook -t markdown_strict --wrap=none 用户手册-v1.xml > 用户手册.md

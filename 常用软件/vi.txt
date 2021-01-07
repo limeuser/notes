@@ -1,0 +1,38 @@
+%跳转到匹配的括号
+fx  跳转到下一个x  
+Fx 跳转
+
+切换shell
+1. ctrl + z  ->  ctrl + z
+2. :sh -> ctrl + d
+
+:s/vivian/sky/ 替换当前行第一个 vivian 为 sky
+:s/vivian/sky/g 替换当前行所有 vivian 为 sky
+:n,$s/vivian/sky/ 替换第 n 行开始到最后一行中每一行的第一个 vivian 为 sky
+:n,$s/vivian/sky/g 替换第 n 行开始到最后一行中每一行所有 vivian 为 sky
+（n 为数字，若 n 为 .，表示从当前行开始到最后一行）
+:%s/vivian/sky/（等同于 :g/vivian/s//sky/） 替换每一行的第一个 vivian 为 sky
+:%s/vivian/sky/g（等同于 :g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky
+
+
+拷贝到系统剪贴板："+y  粘贴"+p
+导航单词: w, e, b
+搜索替换
+:s/target/replace/option
+s: substitute
+option: 
+c(confirmation) 
+g (replace all in one line)
+i (ignore case)
+:%s/target/replace/g 替换所有
+:s/target/replace/g 替换当前行
+:'<,'>s/foo/bar/g 替换选定区域
+:5,12s/foo/bar/g 5到12行
+:.,+2s当前行与接下来的两行
+正则必须转义：例如\(\w\+\) 引用分组\1, \2
+CTRL-R * insert模式粘贴
+fzf ctrl + N, ctrl + P 导航
+多文件：
+
+tmux
+https://www.rushiagr.com/blog/2016/06/16/everything-you-need-to-know-about-tmux-copy-pasting-ubuntu/
