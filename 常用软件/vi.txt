@@ -36,3 +36,8 @@ fzf ctrl + N, ctrl + P 导航
 
 tmux
 https://www.rushiagr.com/blog/2016/06/16/everything-you-need-to-know-about-tmux-copy-pasting-ubuntu/
+
+进入paste模式，不自动缩进
+:set paste
+退出paste模式，开启自动缩进
+:set nopaste
