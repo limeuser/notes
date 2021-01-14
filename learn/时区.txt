@@ -37,3 +37,5 @@ jdbcurl = localhost:3306?serverTimezone=UTC
 但是读取时jdbcurl = localhost:3306?serverTimezone=GMT+8
 上述的输出结果，如果jvm的时区是UTC，输出为2020-01-01 16:00:00，如果jvm的时区是GMT+8，输出是2020-01-01 00:00:00
 
+通过jdbc写入数据时，jvm的时区是什么没有任何影响的，应用程序只需要保证写入和读取使用相同的数据库时区。因为java的date值是不包含时区信息的，值入库完全根据数据库的时区做序列化。
+
