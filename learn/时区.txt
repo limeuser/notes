@@ -1,0 +1,39 @@
+UTC = GMT+0
+
+java
+Date类型，timestamp类型都不包含时区信息，里面存的是从epoc以来过去的毫秒，而epoc是UTC时间。所以也可以说Date类型存的是utc时区。
+我们看到的时间都是经过格式化的表现，时区是格式化函数需要关心的事情，同一个date按不同的时区格式化就会看到不一样的时间。
+SimpleDateFormat默认使用jvm的时区打印时间，也可以直接设置时区。
+
+把字符串解析为date时需要指定时区，所有涉及时间序列化和反序列化的地方都必须统一时区，或者时间字符串的格式就是带时区信息的例如：yyyy-MM-dd'T'HH:mm:ssZ  =》 2021-01-14T17:16:11 +0800。
+jackson解析时如果不做任何配置，时间格式必须是yyyy-MM-dd'T'HH:mm:ssZ 或者yyyy-MM-dd'T'HH:mm:ss.SSSZ，其中Z代表时区可以省略，
+如果没有时区，默认是UTC，即0时区，而不是jvm的时区，所以一定注意json序列化时如果字符串不带时区，一定要全局规范使用UTC。
+jackson中objectMapper.setDateFormat(new SimplDateFormat("yyyy-MM-dd HH:mm:ss"));这样设置的话会使用jvm的时区，这样就依赖于部署的机器需要有固定的时区，不能修改，所以不能这样做。
+可以采用下面两种方法固定的时区：
+1 DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); format.setTimeZone(TimeZone.getTimeZone("UTC"));
+2 objectMapper.setTimeZone(TimeZone.getTimeZone("UTC"));
+这样所有时间数据的时区都必须统一采用UTC。
+
+
+
+mysql
+查看时区设置
+SELECT @@GLOBAL.time_zone, @@SESSION.time_zone;
+
+通过jdbc强制使用指定的时区：serverTimezone=UTC
+
+mysql存储的datetime值和java的date差不多，都不含时区信息，jdbc在读取数据库中的值后使用指定的时区把值解析为java的date，和jackson把字符串反序列化date是类似的。
+所以应用程序需要保证写入时和读取时使用的时区是一样的。如果url中不指定时区，则数据库的时区不能随意修改，修改了之后应用程序读取的时间就会错误。
+我们可以理解为jdbc写入数据时按照指定的时区把java的date转化为了字符串存入数据库，jdbc读取是再按照指定的时区把数据库的值反序列化为java的date。
+这个指定的时区就是mysql数据库设置的时区，按照优先级从高到低：url.serverTimezone > session.time_zone > global.time_zone
+
+举个例子：
+jdbcurl = localhost:3306?serverTimezone=UTC
+执行sql: insert into table(t) values('2020-01-02 00:00:00');
+读取：DateTime t = rs.get("t");  DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); System.out.println(format.format(t));
+输出结果: 如果jvm的时区是UTC，输出为2020-01-02 00:00:00，如果jvm的时区是GMT+8，输出是2020-01-02 00:08:00
+
+如果写入时jdbcurl = localhost:3306?serverTimezone=UTC
+但是读取时jdbcurl = localhost:3306?serverTimezone=GMT+8
+上述的输出结果，如果jvm的时区是UTC，输出为2020-01-01 16:00:00，如果jvm的时区是GMT+8，输出是2020-01-01 00:00:00
+
