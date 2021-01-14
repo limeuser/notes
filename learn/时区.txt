@@ -1,4 +1,5 @@
 UTC = GMT+0
+epoch = 1970-01-01 00:00:00 UTC
 
 java
 Date类型，timestamp类型都不包含时区信息，里面存的是从epoc以来过去的毫秒，而epoc是UTC时间。所以也可以说Date类型存的是utc时区。
