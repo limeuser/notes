@@ -39,3 +39,12 @@ jdbcurl = localhost:3306?serverTimezone=UTC
 
 通过jdbc写入数据时，jvm的时区是什么没有任何影响的，应用程序只需要保证写入和读取使用相同的数据库时区。因为java的date值是不包含时区信息的，值入库完全根据数据库的时区做序列化。
 
+java的date和mysql的datetime的区别
+java的date存储的是从epoc开始过去的毫秒数，所以他的精度是毫秒，我们可以使用yyyy-MM-dd HH:mm:ss.SSS的格式看到具体的毫秒值。
+但是mysql的datetime存储的是每个时间单位上的值，而且只存储到秒级别，即mysql存储了当前的年，月，日，时，分，秒。所以mysql的datetime只能精确到秒。
+所以java的date存储到mysql再取出来，比较一下，内存的时间大概率是在从数据库取出来的时间之后的，因为从数据库取出的时间丢失了毫秒数。
+对于许多时间点类型的业务场景，例如创建时间，修改时间，最好使用时间戳类型，避免取出的数据和内存中的数据不一致。
+
+
+时间戳
+数据库的时间戳和java的date类似，存储的都是从epoc开始过去的毫秒数，所以理论上可以不使用数据库的datetime类型，只使用timestamp类型。
