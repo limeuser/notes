@@ -53,3 +53,7 @@ java的date存储的是从epoc开始过去的毫秒数，所以他的精度是�
 但是如果存储的时间在epoc之前，就不能使用时间戳类型了。
 
 当用客户端查询mysql数据时，datetime的值
+
+
+
+如果要把mysql的数据类型从datetime修改为timestamp，需要注意时区，如果
