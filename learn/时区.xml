@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>时区</title>
+<date>2021-01-15</date>
+</info>
+<section xml:id="_术语" role="data-line-3">
+<title>术语</title>
+<itemizedlist role="data-line-4">
+<listitem role="data-line-4">
+<simpara>GMT 格林威治时间，所有时区都以和GMT之间的偏移量做为参考</simpara>
+<itemizedlist role="data-line-5">
+<listitem role="data-line-5">
+<simpara>Mon Feb 13 08:00:00 GMT+00:00 2012 = Mon Feb 13 08:00:00 GMT+08:00 2012</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem role="data-line-6">
+<simpara>UTC 协调世界时，Z为0时区的标志</simpara>
+<itemizedlist role="data-line-7">
+<listitem role="data-line-7">
+<simpara>时区偏移表示</simpara>
+<itemizedlist role="data-line-8">
+<listitem role="data-line-8">
+<simpara>±[hh]:[mm]</simpara>
+</listitem>
+<listitem role="data-line-9">
+<simpara>±[hh][mm]</simpara>
+</listitem>
+<listitem role="data-line-10">
+<simpara>±[hh]</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem role="data-line-11">
+<simpara>2018-05-20 09:30:00 UTC = 2018-05-20 09:30:00z = 2018-05-20 17:30:00 +8000</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem role="data-line-12">
+<simpara>epoch = 1970-01-01 00:00:00 UTC</simpara>
+</listitem>
+</itemizedlist>
+<simpara role="data-line-15">GMT和UTC是两种不同的时间标准，目前大部分使用的都是UTC，GMT逐渐被淘汰。<?asciidoc-br?>
+我们常说的UTC时区指的是UTC0时区，例如2018-05-20 09:30:00 UTC。</simpara>
+</section>
+<section xml:id="_java" role="data-line-18">
+<title>java</title>
+<section xml:id="_date类型" role="data-line-19">
+<title>date类型</title>
+<simpara role="data-line-20">Date类型不包含时区信息，存的是从epoch以来过去的毫秒，而epoch是UTC时间。所以也可以说Date类型的存储使用的是UTC时区。</simpara>
+</section>
+<section xml:id="_calendar类型" role="data-line-22">
+<title>calendar类型</title>
+<simpara role="data-line-23">带时区信息</simpara>
+</section>
+<section xml:id="_时区与格式化" role="data-line-25">
+<title>时区与格式化</title>
+<simpara role="data-line-27">我们看到的时间都是经过格式化后的字符串，时区是格式化（序列化和反序列化）函数需要关心的事情，而不是存储关心的，同一个date按不同的时区格式化就会看到不一样的时间，但是存储的是同一个值。<?asciidoc-br?>
+SimpleDateFormat默认使用jvm的时区（操作系统时区）打印时间，也可以显式设置时区。</simpara>
+</section>
+<section xml:id="_序列化和反序列化" role="data-line-30">
+<title>序列化和反序列化</title>
+<simpara role="data-line-32">把字符串解析为date时需要明确时区，或者时间字符串的格式就是带时区信息的例如：<?asciidoc-br?>
+yyyy-MM-dd&#8217;T&#8217;HH:mm:ssZ  &#8658; 2021-01-14T17:16:11 +0800。<?asciidoc-br?>
+jackson解析时如果不做任何配置，时间格式必须是yyyy-MM-dd&#8217;T&#8217;HH:mm:ssZ 或者yyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSSZ，其中Z代表时区，但是可以省略<?asciidoc-br?>
+如果没有时区，默认是UTC，即0时区，而不是jvm的时区，所以一定注意json序列化时如果字符串不带时区，一定要全局规范使用UTC。<?asciidoc-br?>
+jackson中objectMapper.setDateFormat(new SimplDateFormat("yyyy-MM-dd HH:mm:ss"));这样设置的话会使用jvm的时区，这样就依赖于部署的机器需要有固定的时区。<?asciidoc-br?>
+可以采用下面两种方法使用固定时区：</simpara>
+<itemizedlist role="data-line-40">
+<listitem role="data-line-40">
+<simpara>DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");<?asciidoc-br?>
+format.setTimeZone(TimeZone.getTimeZone("UTC"));<?asciidoc-br?>
+objectMapper.setDateFormat(format);</simpara>
+</listitem>
+<listitem role="data-line-43">
+<simpara>objectMapper.setTimeZone(TimeZone.getTimeZone("UTC"));</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_mysql" role="data-line-45">
+<title>mysql</title>
+<simpara role="data-line-47">查看时区设置<?asciidoc-br?>
+SELECT @@GLOBAL.time_zone, @@SESSION.time_zone;</simpara>
+<simpara role="data-line-50">通过jdbcurl强制使用指定的时区：xx?serverTimezone=UTC</simpara>
+<simpara role="data-line-53">mysql存储的datetime值和java的date差不多，都不含时区信息，jdbc在读取数据库中的值后使用指定的时区把值解析为java的date，和jackson把字符串反序列化date是类似的。<?asciidoc-br?>
+所以应用程序需要保证写入时和读取时使用的时区是一样的。如果url中不指定时区，则数据库的时区不能随意修改，修改了之后应用程序读取的时间就会错误。<?asciidoc-br?>
+我们可以理解为jdbc写入数据时按照指定的时区把java的date转化为了字符串存入数据库，jdbc读取是再按照指定的时区把数据库的值反序列化为java的date。<?asciidoc-br?>
+这个指定的时区就是mysql数据库设置的时区，按照优先级从高到低：<?asciidoc-br?>
+url中serverTimezone参数 &gt; session.time_zone &gt; global.time_zone</simpara>
+<simpara role="data-line-60">举个例子：<?asciidoc-br?>
+jdbcurl = localhost:3306?serverTimezone=UTC<?asciidoc-br?>
+执行sql: insert into table(t) values('2020-01-02 00:00:00');<?asciidoc-br?>
+mysql存储：存储为2020-01-02 00:00:00<?asciidoc-br?>
+jdbc读取：Date t = rs.getTimestamp("t");<?asciidoc-br?>
+从数据库把2020-01-02 00:00:00传输给jdbc客户端<?asciidoc-br?>
+jdbc客户端使用calendar接收2020-01-02 00:00:00，并把时区设置为UTC<?asciidoc-br?>
+DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");<?asciidoc-br?>
+System.out.println(format.format(t));<?asciidoc-br?>
+输出结果: 如果jvm的时区是UTC，输出为2020-01-02 00:00:00，如果jvm的时区是GMT+8，输出是2020-01-02 00:08:00<?asciidoc-br?>
+通过jdbc写入数据时，jvm的时区是什么没有任何影响的，应用程序只需要保证写入和读取使用相同的数据库时区。</simpara>
+</section>
+<section xml:id="_毫秒" role="data-line-72">
+<title>毫秒</title>
+<simpara role="data-line-74">目前mysql5.6及以上都支持datetime和timestamp增加毫秒数，例如：<?asciidoc-br?>
+insert into table(t) values('2020-01-02 00:00:00.90')<?asciidoc-br?>
+但是低版本的都不支持毫秒，所以不能把内存中的date和从数据库中取出来的时间进行比较。</simpara>
+</section>
+</section>
+</article>
