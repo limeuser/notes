@@ -1,0 +1,6 @@
+sudo service mysql restart
+sudo service mysqld restart
+sudo /etc/init.d/mysql restart
+sudo /etc/init.d/mysqld restart
+sudo systemctl restart mysqld
+sudo /usr/local/etc/rc.d/mysql-server restart
