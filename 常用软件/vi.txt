@@ -1,3 +1,6 @@
+Reload .vimrc :source .vimrc and :PlugInstall to install plugins.
+
+
 %跳转到匹配的括号
 fx  跳转到下一个x  
 Fx 跳转
