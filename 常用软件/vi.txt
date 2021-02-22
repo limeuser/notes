@@ -28,7 +28,7 @@ option:
 c(confirmation) 
 g (replace all in one line)
 i (ignore case)
-I 区分大小写，默认不区分大小写
+I 区分大小写
 :%s/target/replace/g 替换所有
 :s/target/replace/g 替换当前行
 :'<,'>s/foo/bar/g 替换选定区域
