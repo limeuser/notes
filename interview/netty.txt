@@ -19,6 +19,8 @@ netty：
   1.1 mmap：FileChanel.map
   1.2 sendfile：FileChannel.transferTo
 2. CompositeByteBuf，避免用户态内存拷贝，把多个buffer封装成一个完成的buf，避免把多个buffer拷贝到一个大buffer中。
+3. netty的direct memory buffer和零拷贝没关系，只是使用了堆外内存，手动管理内存，性能更高。
+
 
 zero copy技术大概能提升50%性能。
 
