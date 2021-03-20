@@ -23,3 +23,9 @@ netty：
 
 
 zero copy技术大概能提升50%性能。
+
+io
+       阻塞            非阻塞
+同步   read/write      NO_BLOCK
+异步   epoll           AIO
+同步非阻塞没有意义
