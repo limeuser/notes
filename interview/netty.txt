@@ -23,6 +23,3 @@ netty：
 
 
 zero copy技术大概能提升50%性能。
-
-epoll:
-linux使用mmap传递fd，避免大量发生事件的fd信息在内核和用户态拷贝。
