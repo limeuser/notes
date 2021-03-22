@@ -1,4 +1,3 @@
-===
 os zero copy
 ===
 
@@ -16,7 +15,6 @@ zero copy的体现：
 4. cow，以上三种技术都是为了减少用户态和内核态之间的内存拷贝，当拷贝不可避免时，linux使用copy on write技术提高性能。
    当多个程序访问同一分数据时，只读的进程之间可以共享同一份内存数据，只有写的进程做cow，保存修改过的数据，避免大量重复数据加载到物理内存，以及数据拷贝。
 
-===
 netty zero copy
 === 
 
@@ -28,7 +26,6 @@ netty zero copy
 
 zero copy技术大概能提升50%性能。
 
-===
 netty 内存
 ===
 
@@ -37,8 +34,7 @@ netty 内存
    heap buffer: small, short-lived buffer
 heap memory的分配比direct memory快上一个数量级，回收也更快（年轻代），direct buffer的回收依赖weak reference，可能造成gc pause。
 
-   
-===
+
 io同步/异步，阻塞/非阻塞
 ===
 
