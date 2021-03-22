@@ -39,9 +39,9 @@ io同步/异步，阻塞/非阻塞
 ===
 
 io
-       阻塞            非阻塞
-同步   read/write      NO_BLOCK
-异步   epoll           AIO
-同步非阻塞没有意义
+-       阻塞            非阻塞
+- 同步   read/write      NO_BLOCK
+- 异步   epoll           AIO
+- 同步非阻塞没有意义
 
 
