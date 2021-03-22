@@ -1,4 +1,4 @@
-zero copy:
+=== zero copy:
 操作系统级别的zero copy
 io操作的基础流程，以发送文件到socket为例，磁盘 -> 页缓存 -> 用户buffer -> 内核socket buffer -> 网卡buffer
 zero copy的体现：
@@ -23,6 +23,10 @@ netty：
 
 
 zero copy技术大概能提升50%性能。
+
+
+
+
 
 io
        阻塞            非阻塞
