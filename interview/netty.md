@@ -19,10 +19,11 @@ netty zero copy
 === 
 
 1. netty使用了操作系统的zero copy能力
-  1.1 mmap：FileChanel.map
-  1.2 sendfile：FileChannel.transferTo
+- 1.1 mmap：FileChanel.map
+- 1.2 sendfile：FileChannel.transferTo
 2. CompositeByteBuf，避免用户态内存拷贝，把多个buffer封装成一个完成的buf，避免把多个buffer拷贝到一个大buffer中。
 3. netty的direct memory buffer和零拷贝没关系，只是使用了堆外内存，手动管理内存，性能更高。
+4. direct memory：io操作时如果使用堆内存，JVM会先把堆内存拷贝到direct内存，使用direct内存避免了这次拷贝。
 
 zero copy技术大概能提升50%性能。
 
@@ -33,7 +34,6 @@ netty 内存
 -   direct buffer: large, long-lived buffers that are subject to the underlying system’s native I/O operations
 -   heap buffer: small, short-lived buffer
 -   heap memory的分配比direct memory快上一个数量级，回收也更快（年轻代），direct buffer的回收依赖weak reference，可能造成gc pause。
-
 
 io同步/异步，阻塞/非阻塞
 ===
