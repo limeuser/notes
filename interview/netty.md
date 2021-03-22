@@ -1,5 +1,7 @@
-=== zero copy:
-操作系统级别的zero copy
+===
+os zero copy
+===
+
 io操作的基础流程，以发送文件到socket为例，磁盘 -> 页缓存 -> 用户buffer -> 内核socket buffer -> 网卡buffer
 zero copy的体现：
 1. 硬件和内核之间的数据拷贝，不是由CPU完成，而是由专门的硬件DMA完成，解放了cpu，但还是执行了内存拷贝，例如磁盘 -> 页缓存，内核socket buffer -> 网卡buffer。
@@ -14,22 +16,36 @@ zero copy的体现：
 4. cow，以上三种技术都是为了减少用户态和内核态之间的内存拷贝，当拷贝不可避免时，linux使用copy on write技术提高性能。
    当多个程序访问同一分数据时，只读的进程之间可以共享同一份内存数据，只有写的进程做cow，保存修改过的数据，避免大量重复数据加载到物理内存，以及数据拷贝。
 
-netty：
+===
+netty zero copy
+=== 
+
 1. netty使用了操作系统的zero copy能力
   1.1 mmap：FileChanel.map
   1.2 sendfile：FileChannel.transferTo
 2. CompositeByteBuf，避免用户态内存拷贝，把多个buffer封装成一个完成的buf，避免把多个buffer拷贝到一个大buffer中。
 3. netty的direct memory buffer和零拷贝没关系，只是使用了堆外内存，手动管理内存，性能更高。
 
-
 zero copy技术大概能提升50%性能。
 
+===
+netty 内存
+===
 
+1. direct buffer vs heap buffer
+   direct buffer: large, long-lived buffers that are subject to the underlying system’s native I/O operations
+   heap buffer: small, short-lived buffer
+heap memory的分配比direct memory快上一个数量级，回收也更快（年轻代），direct buffer的回收依赖weak reference，可能造成gc pause。
 
-
+   
+===
+io同步/异步，阻塞/非阻塞
+===
 
 io
        阻塞            非阻塞
 同步   read/write      NO_BLOCK
 异步   epoll           AIO
 同步非阻塞没有意义
+
+
