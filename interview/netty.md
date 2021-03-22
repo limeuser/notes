@@ -30,9 +30,9 @@ netty 内存
 ===
 
 1. direct buffer vs heap buffer
-   direct buffer: large, long-lived buffers that are subject to the underlying system’s native I/O operations
-   heap buffer: small, short-lived buffer
-heap memory的分配比direct memory快上一个数量级，回收也更快（年轻代），direct buffer的回收依赖weak reference，可能造成gc pause。
+-   direct buffer: large, long-lived buffers that are subject to the underlying system’s native I/O operations
+-   heap buffer: small, short-lived buffer
+-   heap memory的分配比direct memory快上一个数量级，回收也更快（年轻代），direct buffer的回收依赖weak reference，可能造成gc pause。
 
 
 io同步/异步，阻塞/非阻塞
