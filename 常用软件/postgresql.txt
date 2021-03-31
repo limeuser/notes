@@ -9,3 +9,5 @@ GRANT ALL PRIVILEGES ON all tables in schema public TO testUser;
 
 \c - testUser;
 \c testDB;
+\l; list database
+\d list tables;
