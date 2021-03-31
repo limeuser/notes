@@ -1,0 +1,11 @@
+只使用postgres账号管理数据库，例如创建新用户，database，授权等。
+
+psql -U user_name  -h 127.0.0.1 -d db_name
+
+CREATE USER testUser WITH PASSWORD '*****' login;
+create database testDB;
+GRANT ALL PRIVILEGES ON DATABASE testDB TO testUser;
+GRANT ALL PRIVILEGES ON all tables in schema public TO testUser;
+
+\c - testUser;
+\c testDB;
